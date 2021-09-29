@@ -5,11 +5,9 @@ import {
   FiHome,
   FiCalendar,
   FiUser,
-  FiDollarSign,
   FiBriefcase,
   FiSettings
 } from 'react-icons/fi'
-import { IoPawOutline } from 'react-icons/io5'
 import NavItem from '../components/NavItem'
 import { useLocation } from 'react-router'
 
@@ -19,10 +17,11 @@ export default function Sidebar () {
   const [navSize, changeNavSize] = useState('large')
   return (
     <Flex
-      pos='sticky'
+      pos='absolute'
       left='5'
       my='2.5vh'
       p='2'
+      zIndex='sticky'
       backgroundColor='telegram.50'
       boxShadow='0 4px 12px 0 rgba(0, 0, 0, 0.05)'
       borderRadius='lg'
@@ -69,18 +68,6 @@ export default function Sidebar () {
           icon={FiUser}
           title='Clients'
           active={isActive('/clients')}
-        />
-        <NavItem
-          navSize={navSize}
-          icon={IoPawOutline}
-          title='Animals'
-          active={isActive('/animals')}
-        />
-        <NavItem
-          navSize={navSize}
-          icon={FiDollarSign}
-          title='Stocks'
-          active={isActive('/stocks')}
         />
         <NavItem
           navSize={navSize}

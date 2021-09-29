@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex, TagLabel, Icon, Link, Tag } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 
-export default function NavItem ({ icon, title, active, navSize }) {
+export default function NavItem({ icon, title, active, navSize }) {
   return (
     <Flex
       mt={30}
@@ -26,9 +26,6 @@ export default function NavItem ({ icon, title, active, navSize }) {
           </TagLabel>
         </Tag>
       </Link>
-      {/* <MenuList py={0} border="none" w={200} h={200} ml={5}>
-          <NavHoverBox title={title} icon={icon} description={description} />
-        </MenuList> */}
     </Flex>
   )
 }

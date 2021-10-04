@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/icons'
 import { useHistory } from 'react-router-dom'
 
-const Paginator = ({ currentPage, totalPages }) => {
+const Paginator = ({ prefix, currentPage, totalPages }) => {
   // const [searchQueries, updateSearchQueries] = useState(queryString.parse(location.search))
   const history = useHistory()
 
@@ -15,7 +15,7 @@ const Paginator = ({ currentPage, totalPages }) => {
     <Button
       key={index}
       onClick={() => {
-        history.push(`/dashboard?pageNo=${no}`)
+        history.push(`/${prefix}?pageNo=${no}`)
       }}
     >
       {no}
@@ -32,7 +32,7 @@ const Paginator = ({ currentPage, totalPages }) => {
         <Button
           disabled={+currentPage === 1}
           onClick={() => {
-            history.push(`/dashboard?pageNo=${+currentPage - 1}`)
+            history.push(`/${prefix}?pageNo=${+currentPage - 1}`)
           }}
         >
           <ArrowBackIcon />
@@ -41,7 +41,7 @@ const Paginator = ({ currentPage, totalPages }) => {
         <Button
           disabled={+currentPage === totalPages}
           onClick={() => {
-            history.push(`/dashboard?pageNo=${+currentPage + 1}`)
+            history.push(`/${prefix}?pageNo=${+currentPage + 1}`)
           }}
         >
           <ArrowForwardIcon />

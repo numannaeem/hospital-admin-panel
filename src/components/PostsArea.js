@@ -3,11 +3,12 @@ import Post from './Post'
 import { Container } from '@chakra-ui/layout'
 import Paginator from './Paginator'
 import queryString from 'query-string'
-import { useLocation } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 
 const PostsArea = ({ apiEndpoint }) => {
   const location = useLocation()
   const [currentPage, setCurrentPage] = useState(1)
+  const { prefix } = useParams()
   const [postsData, setPostsData] = useState({
     count: 10,
     next: null,
@@ -81,7 +82,7 @@ const PostsArea = ({ apiEndpoint }) => {
         bg='white'
       >
         {posts}
-        <Paginator totalPages={postsData.count} currentPage={currentPage} />
+        <Paginator prefix={prefix} totalPages={postsData.count} currentPage={currentPage} />
       </Container>
     </>
   )

@@ -1,38 +1,40 @@
-import { useState } from "react";
-import Post from "./Post";
-import { Container } from "@chakra-ui/layout";
-import Paginator from "./Paginator";
+import { useState } from 'react'
+import Post from './Post'
+import { Container } from '@chakra-ui/layout'
+import Paginator from './Paginator'
+import { BrowserRouter } from 'react-router-dom'
 
 const PostsArea = ({ apiEndpoint }) => {
   const [postsData, setPostsData] = useState({
-    count: 1,
+    count: 10,
     next: null,
     previous: null,
     results: Array(10).fill({
       id: 1,
       hospital_type: {
         id: 1,
-        name: "Type 1",
-        created_at: "2021-08-18T14:10:19.929313+05:30",
+        name: 'Type 1',
+        created_at: '2021-08-18T14:10:19.929313+05:30'
       },
-      hospitaldepatments_hospitals: ["D1"],
-      hospitalfacilities_hospitals: ["F1"],
+      hospitaldepatments_hospitals: ['D1'],
+      hospitalfacilities_hospitals: ['F1'],
       hospitals_images: [],
       management_count: 0,
       officer_count: 0,
       doctor_count: 0,
       nurse_count: 0,
-      hospital_name: "Hospital 1",
-      history: "",
-      about: "",
+      hospital_name: 'Hospital 1',
+      history: '',
+      about: '',
       hospital_avatar: null,
-      created_at: "2021-08-18T14:11:23.797403+05:30",
+      created_at: '2021-08-18T14:11:23.797403+05:30',
       management: [],
       officer: [],
       doctor: [],
-      nurse: [],
-    }),
-  });
+      nurse: []
+    })
+  })
+
   const posts = postsData.results.map((post, index) => (
     <Post
       key={index}
@@ -46,25 +48,27 @@ const PostsArea = ({ apiEndpoint }) => {
       place={null}
       modalContent={null}
     />
-  ));
+  ))
 
   return (
     <>
       <Container
-        px="1"
-        ml="4"
+        px='1'
+        ml='4'
         flexGrow={1}
         centerContent
-        maxW="100%"
-        h="100%"
-        overflow="auto"
-        bg="white"
+        maxW='100%'
+        h='100%'
+        overflow='auto'
+        bg='white'
       >
         {posts}
-        <Paginator totalPages={postsData.count} currentPage={postsData.next - 1} />
+        <BrowserRouter>
+          <Paginator totalPages={postsData.count} />
+        </BrowserRouter>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default PostsArea;
+export default PostsArea

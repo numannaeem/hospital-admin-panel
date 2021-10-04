@@ -39,12 +39,22 @@ const PostsArea = ({ apiEndpoint }) => {
     <Post
       key={index}
       id={post.id}
+      officer_count={post.officer_count}
+      doctor_count={post.doctor_count}
+      nurse_count={post.nurse_count}
+      management_count={post.management_count}
+      hospitals_images={post.hospitals_images}
       title={post.hospital_name}
       imgUrl={post.hospital_avatar}
       dept={post.hospitaldepatments_hospitals}
       fect={post.hospitalfacilities_hospitals}
       type={post.hospital_type}
       tags={post.tags}
+      about={post.about}
+      history={post.history}
+      doctor={post.doctor}
+      management={post.management}
+      nurse={post.nurse}
       place={null}
       modalContent={null}
     />

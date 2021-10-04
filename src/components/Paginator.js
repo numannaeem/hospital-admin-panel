@@ -1,23 +1,14 @@
 import { Skeleton, Button, ButtonGroup } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
 import {
   ArrowBackIcon,
   ArrowForwardIcon
 } from '@chakra-ui/icons'
 import { useHistory } from 'react-router-dom'
-import queryString from 'query-string'
-import { useLocation } from 'react-router'
 
-const Paginator = ({ totalPages }) => {
-  const location = useLocation()
+const Paginator = ({ currentPage, totalPages }) => {
   // const [searchQueries, updateSearchQueries] = useState(queryString.parse(location.search))
   const history = useHistory()
-  const [currentPage, setCurrentPage] = useState(1)
-  useEffect(() => {
-    // updateSearchQueries(
-    //   queryString.parse(location.search))
-    if (location.search) { setCurrentPage(queryString.parse(location.search).pageNo) }
-  }, [location])
+
   // array frm 1 to totalPages in locations 0...totalPages-1
   const pageNos = [...Array(totalPages + 1).keys()].slice(1, totalPages + 1)
   const pageButtons = pageNos.map((no, index) => (

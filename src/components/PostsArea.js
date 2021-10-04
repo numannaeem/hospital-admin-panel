@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Post from './Post'
 import { Container } from '@chakra-ui/layout'
 import Paginator from './Paginator'
-import { BrowserRouter } from 'react-router-dom'
+import queryString from 'query-string'
+import { useLocation } from 'react-router'
 
 const PostsArea = ({ apiEndpoint }) => {
+  const location = useLocation()
+  const [currentPage, setCurrentPage] = useState(1)
   const [postsData, setPostsData] = useState({
     count: 10,
     next: null,
@@ -34,6 +37,11 @@ const PostsArea = ({ apiEndpoint }) => {
       nurse: []
     })
   })
+  useEffect(() => {
+    // updateSearchQueries(
+    //   queryString.parse(location.search))
+    if (location.search) { setCurrentPage(queryString.parse(location.search).pageNo) }
+  }, [location])
 
   const posts = postsData.results.map((post, index) => (
     <Post
@@ -73,9 +81,7 @@ const PostsArea = ({ apiEndpoint }) => {
         bg='white'
       >
         {posts}
-        <BrowserRouter>
-          <Paginator totalPages={postsData.count} />
-        </BrowserRouter>
+        <Paginator totalPages={postsData.count} currentPage={currentPage} />
       </Container>
     </>
   )
